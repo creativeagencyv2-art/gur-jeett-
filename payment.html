@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Payment – Creative Agency</title><link rel="icon" type="image/png" href="assets/img/favicon.png"><link rel="shortcut icon" href="favicon.ico"><link rel="apple-touch-icon" href="assets/img/favicon.png"><meta property="og:title" content="1000 AI Reels Bundle – Only ₹99"><meta property="og:description" content="1000 ready-to-use AI reels for Instagram and YouTube. One-time payment, instant access."><link rel="stylesheet" href="assets/css/style.css"><script src="assets/js/config.js"></script></head><body>
+<div class="nav"><div class="w"><a class="logo" href="index.html"><img src="assets/img/logo.jpg" alt="">Creative Agency</a></div></div>
+<div class="w"><div class="prog"><span class="dn"><u>✓</u>Your details</span><hr><span class="on"><u>2</u>Payment</span><hr><span><u>3</u>Access</span></div>
+
+<div class="box"><h2>Complete your payment</h2><p class="sub">Scan the QR with any UPI app and pay ₹99.</p><div class="sum"><img src="assets/img/box.jpg" alt=""><div>1000 AI Reels Bundle<small>One-time payment</small></div><b>₹99</b></div>
+<div class="qr"><img src="assets/img/qr.svg" alt="UPI QR code for ₹99"></div>
+<div class="amt">Amount is already filled: <b>₹99</b></div>
+<div class="amt" style="margin-top:10px">Or pay to this UPI ID</div>
+<div class="upi"><span id="uid"></span><button type="button" id="cb">Copy</button></div>
+<a class="btn out full" id="app" href="#">Open UPI app on this phone</a>
+<div class="line"></div>
+<div class="fld"><label for="utr">Paid already? Enter your UTR number</label><input id="utr" inputmode="numeric" maxlength="12" placeholder="12-digit UTR" autocomplete="off" style="letter-spacing:2px">
+<div class="hint">Find it in your UPI app under payment details (UTR / Transaction ID / Reference number).</div></div>
+<div class="err" id="err"></div>
+<button class="btn full" id="go" type="button">Confirm and get access</button>
+<a class="back" href="checkout.html">← Back</a></div></div><footer><div class="w"><b>Creative Agency</b><br>Email: creativeagency.b83@gmail.com<br>Phone: +91 84395 09941</div></footer>
+<script>
+function send(d){if(!window.CFG||!CFG.ENDPOINT)return Promise.resolve();
+ var c=new AbortController();setTimeout(function(){c.abort()},4000);
+ return fetch(CFG.ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d),signal:c.signal}).catch(function(){})}
+function S(k,v){try{if(v===undefined)return sessionStorage.getItem(k);sessionStorage.setItem(k,v)}catch(e){return null}}
+</script>
+<script>
+if(!S('wa'))location.replace('checkout.html');
+document.getElementById('uid').textContent=CFG.UPI;
+document.getElementById('app').href='upi://pay?pa='+CFG.UPI+'&pn=Creative%20Agency&am='+CFG.PRICE+'.00&cu=INR&tn=AI%20Reels%20Bundle';
+document.getElementById('cb').onclick=function(){var b=this;function d(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)}
+ try{navigator.clipboard.writeText(CFG.UPI).then(d,d)}catch(e){d()}};
+document.getElementById('go').onclick=function(){
+ var u=document.getElementById('utr').value.replace(/\s/g,''),e=document.getElementById('err');
+ if(!/^\d{12}$/.test(u)){e.textContent='Please enter a valid 12-digit UTR number (digits only).';return}
+ e.textContent='';this.disabled=true;this.textContent='Please wait...';
+ S('paid','1');
+ send({stage:'payment',name:S('nm')||'',whatsapp:'+91'+S('wa'),utr:u,product:'1000 AI Reels Bundle',price:CFG.PRICE}).then(function(){location.href='thankyou.html'})};
+</script></body></html>

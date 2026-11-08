@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Checkout – Creative Agency</title><link rel="icon" type="image/png" href="assets/img/favicon.png"><link rel="shortcut icon" href="favicon.ico"><link rel="apple-touch-icon" href="assets/img/favicon.png"><meta property="og:title" content="1000 AI Reels Bundle – Only ₹99"><meta property="og:description" content="1000 ready-to-use AI reels for Instagram and YouTube. One-time payment, instant access."><link rel="stylesheet" href="assets/css/style.css"><script src="assets/js/config.js"></script></head><body>
+<div class="nav"><div class="w"><a class="logo" href="index.html"><img src="assets/img/logo.jpg" alt="">Creative Agency</a></div></div>
+<div class="w"><div class="prog"><span class="on"><u>1</u>Your details</span><hr><span><u>2</u>Payment</span><hr><span><u>3</u>Access</span></div>
+
+<div class="box"><h2>Your details</h2><p class="sub">Enter your WhatsApp number to continue to payment.</p><div class="sum"><img src="assets/img/box.jpg" alt=""><div>1000 AI Reels Bundle<small>One-time payment</small></div><b>₹99</b></div>
+<div class="fld"><label for="nm">Name (optional)</label><input id="nm" placeholder="Your name" autocomplete="name"></div>
+<div class="fld"><label for="wa">WhatsApp number *</label><div class="ph"><span>+91</span><input id="wa" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number" autocomplete="tel-national"></div>
+<div class="hint">We use this only to support you with your access.</div></div>
+<div class="err" id="err"></div>
+<button class="btn full" id="go" type="button">Continue to Payment →</button>
+<a class="back" href="index.html">← Back to home</a></div></div><footer><div class="w"><b>Creative Agency</b><br>Email: creativeagency.b83@gmail.com<br>Phone: +91 84395 09941</div></footer>
+<script>
+function send(d){if(!window.CFG||!CFG.ENDPOINT)return Promise.resolve();
+ var c=new AbortController();setTimeout(function(){c.abort()},4000);
+ return fetch(CFG.ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d),signal:c.signal}).catch(function(){})}
+function S(k,v){try{if(v===undefined)return sessionStorage.getItem(k);sessionStorage.setItem(k,v)}catch(e){return null}}
+</script>
+<script>
+document.getElementById('go').onclick=function(){
+ var wa=document.getElementById('wa').value.replace(/\D/g,''),nm=document.getElementById('nm').value.trim(),e=document.getElementById('err');
+ if(!/^[6-9]\d{9}$/.test(wa)){e.textContent='Please enter a valid 10-digit WhatsApp number.';return}
+ e.textContent='';this.disabled=true;this.textContent='Please wait...';
+ S('wa',wa);S('nm',nm);
+ send({stage:'lead',name:nm,whatsapp:'+91'+wa,product:'1000 AI Reels Bundle',price:CFG.PRICE}).then(function(){location.href="payment.html"})};
+</script></body></html>
